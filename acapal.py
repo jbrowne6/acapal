@@ -9,9 +9,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-SLEEPTIME = 3 # timeout for mainpage loads
+SLEEPTIME = 12 # timeout for mainpage loads
 SHORTTIME = 1 # rest time between papers
-PAGETIME = .75 # timeout for within page loads
+PAGETIME = 4 # timeout for within page loads
 
 def getCitations(paperID, myDict):
     browser = configureBrowser()
@@ -44,7 +44,6 @@ def getCitations(paperID, myDict):
             myHTML = BeautifulSoup(browser.page_source, features="html.parser")
 
     except exceptions.NoSuchElementException:
-        print ("This paper didn't have the right tags.")
         pass
     except exceptions.ElementClickInterceptedException:
         print ("The chrome browser lost focus.")
@@ -155,9 +154,9 @@ def printTopN(myDict, topN, fileName):
 
 paperName = "A Survey of General-Purpose Computation on Graphics Hardware"
 paperName = "FlashGraph: processing billion-node graphs on an array of commodity SSDs"
-paperName = "Grandmaster level in StarCraft II using multi-agent reinforcement learning"
+paperName = "Red-Blue Pebbling Revisited: Near Optimal Parallel Matrix-Matrix Multiplication"
 
 myFileName = "paperList.json"
-myPaperDict = getGenerations(paperName, 2)
+myPaperDict = getGenerations(paperName, 3)
 savePaperList(myFileName, myPaperDict)
 printTopN(myPaperDict,15,"topN.txt")
